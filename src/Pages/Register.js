@@ -36,14 +36,17 @@ class Register extends React.Component {
                 <div className="register-container">
                 {this.state.sports.map(eachSport => {
                     return (
-                        <div className="sport-card" key={eachSport.name}>
+                        <div style={{backgroundImage: `url(${eachSport.uploadedPicture})`}} className="sport-card" key={eachSport.name}>
                             <div className="sport-title">
                                 <h5>{eachSport.name.toUpperCase()}</h5>
                                 <div>PRIZE</div>
                             </div>
                             <div className="sport-title">
                                 <div>{eachSport.players} players</div>
-                                <div>$1 million</div>
+                                <div>Rs. {eachSport.prizeMoney}</div>
+                            </div>
+                            <div className="sport-title">
+                                <div>ENTRY FEE: Rs. {eachSport.entryFee}</div>
                             </div>
                             <Button disabled={!this.state.userDetails.isProfileComplete} className="sport-register" color="success">
                                 <a style={{textDecoration:"none", color:"white"}} href={`/register/${eachSport.name.toLowerCase()}`}>

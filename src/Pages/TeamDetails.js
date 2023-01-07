@@ -84,7 +84,7 @@ const TeamDetails = () => {
         setTeam(temp)
         setplayerName("")
         setplayerNumber("")
-        if (team.length+1 === parseInt(sports.players))
+        if (team.length + 1 === parseInt(sports.players))
             setButtonDisbaled(true)
     }
 
