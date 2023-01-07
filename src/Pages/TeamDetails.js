@@ -17,10 +17,16 @@ const TeamDetails = () => {
     const [playerNumber, setplayerNumber] = useState("")
     const [team, setTeam] = useState([])
     const [buttonDisabled, setButtonDisbaled] = useState(false)
+    const [eventArray, setEventArray] = useState ([])
 
     useEffect(() => {
         firestore.collection("sports").doc(id).get().then(document => {
             setSports(document.data())
+            let temp = []
+            for (var i=0;i<document.data().numberOfEvents; i++) {
+                temp[i] = i+1
+            }
+            setEventArray(temp)
         }).catch (err => console.log(err.message))
         const number = localStorage.getItem("uid")
         firestore.collection("users").doc(number).get().then(document => {
@@ -121,7 +127,7 @@ const TeamDetails = () => {
             <div style={{marginTop:"20px"}}>
                 <h5>EVENT DETAILS</h5>
                 <div style={{display:"flex"}}>
-                    {[1,2,3].map(eachIndex => {
+                    {eventArray.map(eachIndex => {
                         return (
                             <Input name={`eventName${eachIndex}`} onChange={onChange} style={{margin:"10px"}} key={eachIndex} type="select">
                                 <option value="">
